@@ -4,14 +4,6 @@ import os
 
 class Account:
 
-    access_token = ""
-    accountID = ""
-    be = 0
-    rp = 0
-    nameStatus = ""
-    requests = 0
-    days = 0
-
     Regions = {
         "EUNE": "EUN1",
         "EUW": "EUW1",
@@ -26,7 +18,20 @@ class Account:
     }
 
     def __init__(self):
-        
+        self.username = ""
+        self.password = ""
+        self.alias = ""
+        self.region = ""
+        self.mode = ""
+        self.access_token = ""
+        self.accountID = ""
+        self.be = 0
+        self.rp = 0
+        self.nameStatus = ""
+        self.requests = 0
+        self.days = 0
+
+    def Setup(self):
         self.username = str(input('\t> Username: '))
         if len(self.username) == 0:
             raise Exception('Username expected.')
@@ -34,7 +39,7 @@ class Account:
         self.password = str(input('\t> Password: '))
         if len(self.password) == 0:
             raise Exception('Password expected.')
-        
+
         self.alias = str(input('\t> Requested name: '))
         if len(self.alias) == 0:
             raise Exception('Name expected.')
@@ -45,23 +50,6 @@ class Account:
         else:
             raise Exception('Invalid region.')
 
-            
         self.mode = str(input('\t> Mode [Turbo/Sniper]: ')).upper()
         if self.mode != "TURBO" and self.mode != "SNIPER":
             raise Exception('Invalid mode.')
-
-    
-    def Username(self):
-        return self.username
-    
-    def Password(self):
-        return self.password
-
-    def Alias(self):
-        return self.alias
-    
-    def Region(self):
-        return self.region
-
-    def Mode(self):
-        return self.mode

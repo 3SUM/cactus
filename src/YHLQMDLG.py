@@ -13,8 +13,7 @@ class YHLQMDLG:
     def Run(self):
         if self.account.mode == "TURBO":
             self.Turbo()
-        else:
-            self.Sniper()
+        self.Sniper()
     
     def Sniper(self):
         print(f'[YHLQMDLG] {self.account.mode}')
@@ -220,5 +219,6 @@ class YHLQMDLG:
 if __name__ == '__main__':
     print('[YHLQMDLG] Enter Riot account details.')
     account = ac.Account()
+    account.Setup()
     yh = YHLQMDLG(account)
     yh.Run()
