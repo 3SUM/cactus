@@ -37,7 +37,7 @@ library beforehand. If you do not have the library installed please use the foll
 pip install requests
 ```
 
-Once the prerequisites are met, you are free to find the source code [here](https://github.com/0x000E/YHLQMDLG/src) and run the following command: **NOTE: You will also need [Account.py](https://github.com/0x000E/YHLQMDLG/src/Account.py).**
+Once the prerequisites are met, you are free to find the source code [here](https://github.com/0x000E/YHLQMDLG/tree/master/src) and run the following command: **NOTE: You will also need [Account.py](https://github.com/0x000E/YHLQMDLG/blob/master/src/Account.py).**
 
 ```
 python YHLQMDLG.py
