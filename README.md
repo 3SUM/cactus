@@ -8,13 +8,13 @@
 
 # YHLQMDLG
 
-YHLQMDLG is a WIP League of Legends summoner name turbo/sniper tool.
+YHLQMDLG is a **WIP** League of Legends summoner name turbo/sniper tool.
 
 There are two modes to YHLQMDLG:
 
 1. **Turbo**: Will attempt to change your summoner name to the requested one 24/7 until successful.
 2. **Sniper**: Will attempt to change your summoner name to the requested one on the expiration date.
-To see when a name expires check out this [website](https://lolnames.gg/en/)
+To see when a name expires check out [lolnames.gg](https://lolnames.gg/en/).
 
 Please note this is a **WIP** and updates will happen to improve YHLQMDLG. As of now *(14/08/2020)*
 the `Turbo` mode is essentially fully functional, while the `Sniper` mode has yet to be completed.
