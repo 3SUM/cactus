@@ -9,11 +9,13 @@ class YHLQMDLG:
 
     def __init__(self, account):
         self.account = account
+
+    def Run(self):
         if self.account.mode == "TURBO":
             self.Turbo()
         else:
             self.Sniper()
-
+    
     def Sniper(self):
         print(f'[YHLQMDLG] {self.account.mode}')
         self.GetCountDown()
@@ -32,18 +34,18 @@ class YHLQMDLG:
         else:
             print(
                 f'[YHLQMDLG] Requested name: {self.account.alias} not available.')
-            print(f'[YHLQMDLG] Starting turbo...')
+            print('[YHLQMDLG] Starting turbo...')
             while True:
                 time.sleep(2.4)
                 if self.ChangeName():
-                    print(f'TURBO SUCCESSFUL!')
+                    print('TURBO SUCCESSFUL!')
                     break
                 else:
                     self.account.request += 1
                     print(f'Requests: {self.account.requests}')
                     if self.account.requests % 195 == 0:
                         if self.Login():
-                            print(f'[YHLQMDLG] NEW ACCOUNT TOKEN')
+                            print('[YHLQMDLG] NEW ACCOUNT TOKEN')
 
     def Login(self):
         # url
@@ -73,7 +75,7 @@ class YHLQMDLG:
 
         # Verify request worked
         if "access_token" in data:
-            print(f'[YHLQMDLG] Login successful!')
+            print('[YHLQMDLG] Login successful!')
             self.account.access_token = data["access_token"]
             return
         else:
@@ -169,7 +171,6 @@ class YHLQMDLG:
 
         # Attempt POST request
         response = requests.post(url, data=body, headers=headers)
-        print(response.text)
 
         # Convert response to JSON
         data = response.json()
@@ -177,8 +178,8 @@ class YHLQMDLG:
         # Verify request worked
         if "transactions" in data:
             return True
-        else:
-            return False
+
+        return False
 
     def GetCountDown(self):
         # url
@@ -213,11 +214,11 @@ class YHLQMDLG:
             return False
 
         # if time has not been reached, looping condition stays true
-        else:
-            return True
+        return True
 
 
 if __name__ == '__main__':
-    print(f'[YHLQMDLG] Enter Riot account details.')
+    print('[YHLQMDLG] Enter Riot account details.')
     account = ac.Account()
-    request = YHLQMDLG(account)
+    yh = YHLQMDLG(account)
+    yh.Run()
