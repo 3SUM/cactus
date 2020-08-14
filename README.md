@@ -1,7 +1,7 @@
 <br><br>
 
 <p align="center">
-<a href="https://github.com/0x000E"><img width="420" src="./logo/logo.png" alt="YHLQMDLG logo"></a>
+<a href="https://github.com/0x000E"><img width="300" src="./logo/logo.png" alt="YHLQMDLG logo"></a>
 </p>
 
 <br><br>
@@ -12,16 +12,16 @@ YHLQMDLG is a WIP League of Legends summoner name turbo/sniper tool.
 
 There are two modes to YHLQMDLG:
 
-1. *Turbo*: Will attempt to change your summoner name to the requested one 24/7 until successful.
-2. *Sniper*: Will attempt to change your summoner name to the requested one on the expiration date.
+1. **Turbo**: Will attempt to change your summoner name to the requested one 24/7 until successful.
+2. **Sniper**: Will attempt to change your summoner name to the requested one on the expiration date.
 To see when a name expires check out this [website](https://lolnames.gg/en/)
 
-Please note this is a *WIP* and updates will happen to improve YHLQMDLG. As of now *(14/08/2020)*
+Please note this is a **WIP** and updates will happen to improve YHLQMDLG. As of now *(14/08/2020)*
 the `Turbo` mode is essentially fully functional, while the `Sniper` mode has yet to be completed.
 
-If you have questions or concerns please feel free to contact me here or on Discord @icantcode#5581.
+If you have questions or concerns please feel free to contact me here or on **Discord @icantcode#5581**.
 
-# Legal Disclaimer
+## Legal Disclaimer
 
 This tool was strictly developed to demonstrate how straightforward it is to abuse the Riot API.
 Please refrain from using YHLQMDLG as it is once again developed for educational purposes only. Nevertheless, if you use this, you are doing it at your own risk. You have been warned.
