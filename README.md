@@ -1,7 +1,7 @@
 <br><br>
 
 <p align="center">
-<a href="https://github.com/0x000E"><img width="300" src="./logo/logo.png" alt="YHLQMDLG logo"></a>
+<a href="https://github.com/0x000E"><img width="200" src="./logo/logo.png" alt="YHLQMDLG logo"></a>
 </p>
 
 <br><br>
