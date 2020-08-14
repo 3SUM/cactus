@@ -1,0 +1,5 @@
+.DS_Store
+src/__pycache*
+src/venv
+src/web
+src/example.py
