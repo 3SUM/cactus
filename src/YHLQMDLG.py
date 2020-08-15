@@ -142,7 +142,7 @@ class YHLQMDLG:
             raise Exception('GetSummonerNameChangeAvailable failed.')
 
     def ChangeName(self):
-        url, ref = ""
+        url, ref = "", ""
         if self.account.region == "NA1":
             url = "https://store.na2.lol.riotgames.com/storefront/v3/summonerNameChange/purchase?language=en_GB"
             ref = "https://store.na2.lol.riotgames.com/storefront/ui/v1/app.html?language=en_GB&port=52684&clientRegion=na2&selectedItems=&page=featured&recipientSummonerId="
