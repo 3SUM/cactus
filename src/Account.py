@@ -28,7 +28,7 @@ class Account:
         self.be = 0
         self.rp = 0
         self.nameStatus = ""
-        self.requests = 0
+        self.requests_count = 0
         self.days = 0
 
     def Setup(self):

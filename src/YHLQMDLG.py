@@ -40,9 +40,9 @@ class YHLQMDLG:
                     print('TURBO SUCCESSFUL!')
                     break
                 else:
-                    self.account.request += 1
-                    print(f'Requests: {self.account.requests}')
-                    if self.account.requests % 195 == 0:
+                    self.account.requests_count += 1
+                    print(f'Requests: {self.account.requests_count}')
+                    if self.account.requests_count % 195 == 0:
                         if self.Login():
                             print('[YHLQMDLG] NEW ACCOUNT TOKEN')
 
