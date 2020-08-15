@@ -153,9 +153,12 @@ class YHLQMDLG:
 
 if __name__ == '__main__':
     print('[YHLQMDLG] Enter Riot account details.')
+    print("=" * 60)
 
     account = ac.Account()
     account.Setup()
+    
+    print("=" * 60)
 
     client = cl.Client(account)
     client.Build()
