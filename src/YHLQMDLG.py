@@ -1,4 +1,5 @@
 import Account as ac
+import Client as cl
 import requests
 import time
 import re
@@ -7,14 +8,15 @@ from datetime import datetime, timedelta
 
 class YHLQMDLG:
 
-    def __init__(self, account):
+    def __init__(self, account, client):
         self.account = account
+        self.client = client
 
     def Run(self):
         if self.account.mode == "TURBO":
             self.Turbo()
         self.Sniper()
-    
+
     def Sniper(self):
         print(f'[YHLQMDLG] {self.account.mode}')
         self.GetCountDown()
@@ -23,10 +25,12 @@ class YHLQMDLG:
     def Turbo(self):
         print(f'[YHLQMDLG] {self.account.mode}')
         self.Login()
+        self.client.UpdateAccessToken()
         self.PurchaseInformation()
+        self.client.UpdateAccountID()
         self.GetSummonerNameChangeAvailable()
 
-        if self.account.nameStatus:
+        if self.account.name_status:
             print(
                 f'[YHLQMDLG] Requested name: {self.account.alias} available.')
             self.ChangeName()
@@ -37,37 +41,20 @@ class YHLQMDLG:
             while True:
                 time.sleep(2.4)
                 if self.ChangeName():
-                    print('TURBO SUCCESSFUL!')
+                    print('[YHLQMDLG] TURBO SUCCESSFUL!')
                     break
                 else:
                     self.account.requests_count += 1
                     print(f'Requests: {self.account.requests_count}')
                     if self.account.requests_count % 195 == 0:
                         if self.Login():
-                            print('[YHLQMDLG] NEW ACCOUNT TOKEN')
+                            print('[YHLQMDLG] NEW ACCESS TOKEN')
+                            self.client.UpdateAccessToken()
 
     def Login(self):
-        # url
-        url = "https://auth.riotgames.com/token"
-
-        # Request body
-        body = "client_assertion_type=urn%3Aietf%3Aparams%3Aoauth%3Aclient-assertion-type%3Ajwt-bearer&client_assertion=eyJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJodHRwczpcL1wvYXV0aC5yaW90Z2FtZXMuY29tXC90b2tlbiIsInN1YiI6ImxvbCIsImlzcyI6ImxvbCIsImV4cCI6MTYwMTE1MTIxNCwiaWF0IjoxNTM4MDc5MjE0LCJqdGkiOiIwYzY3OThmNi05YTgyLTQwY2ItOWViOC1lZTY5NjJhOGUyZDcifQ.dfPcFQr4VTZpv8yl1IDKWZz06yy049ANaLt-AKoQ53GpJrdITU3iEUcdfibAh1qFEpvVqWFaUAKbVIxQotT1QvYBgo_bohJkAPJnZa5v0-vHaXysyOHqB9dXrL6CKdn_QtoxjH2k58ZgxGeW6Xsd0kljjDiD4Z0CRR_FW8OVdFoUYh31SX0HidOs1BLBOp6GnJTWh--dcptgJ1ixUBjoXWC1cgEWYfV00-DNsTwer0UI4YN2TDmmSifAtWou3lMbqmiQIsIHaRuDlcZbNEv_b6XuzUhi_lRzYCwE4IKSR-AwX_8mLNBLTVb8QzIJCPR-MGaPL8hKPdprgjxT0m96gw&grant_type=password&username="
-        body += self.account.region
-        body += "%7C"
-        body += self.account.username
-        body += "&password="
-        body += self.account.password
-        body += "&scope=openid%20offline_access%20lol%20ban%20profile%20email%20phone"
-
-        # Request headers
-        headers = {
-            "User-Agent": "RiotClient/17.1.0 (rso-auth)",
-            "Accept": "*/*",
-            "Content-type": "application/x-www-form-urlencoded"
-        }
-
         # Attempt POST request
-        response = requests.post(url, data=body, headers=headers)
+        response = requests.post(
+            self.client.login_url, data=self.client.login_body, headers=self.client.login_headers)
 
         # Convert response to JSON
         data = response.json()
@@ -81,29 +68,16 @@ class YHLQMDLG:
             raise Exception('Login Failed.')
 
     def PurchaseInformation(self):
-        # url
-        if self.account.region == "NA1":
-            url = "https://store.na2.lol.riotgames.com/storefront/v3/history/purchase?language=en_GB"
-        else:
-            url = "https://store." + self.account.region + \
-                ".lol.riotgames.com/storefront/v3/history/purchase?language=en_GB"
-
-        # Request headers
-        headers = {
-            "User-Agent": "RiotClient/18.0.0 (lol-store)",
-            "Accept": "application/json",
-            "Authorization": "Bearer " + self.account.access_token
-        }
-
         # Attempt GET request
-        response = requests.get(url, headers=headers)
+        response = requests.get(
+            self.client.purchase_info_url, headers=self.client.purchase_info_headers)
 
         # Convert response to JSON
         data = response.json()
 
         # Verify request worked
         if "player" in data:
-            self.account.accountID = str(data["player"]["accountId"])
+            self.account.account_id = str(data["player"]["accountId"])
             self.account.be = int(data["player"]["ip"])
             self.account.rp = int(data["player"]["rp"])
             if self.account.be < 13900:
@@ -113,63 +87,24 @@ class YHLQMDLG:
             raise Exception('PurchaseInformation failed.')
 
     def GetSummonerNameChangeAvailable(self):
-        # url
-        if self.account.region == "NA1":
-            url = "https://store.na2.lol.riotgames.com/storefront/v3/summonerNameChange/verify/" + \
-                self.account.alias
-        else:
-            url = "https://store." + self.account.region + ".lol.riotgames.com/storefront/v3/summonerNameChange/verify/" + \
-                self.account.alias
-
-        # Request headers
-        headers = {
-            "User-Agent": "RiotClient/18.0.0 (lol-store)",
-            "Accept": "application/json",
-            "Authorization": "Bearer " + self.account.access_token
-        }
-
         # Attempt GET request
-        response = requests.get(url, headers=headers)
+        response = requests.get(
+            self.client.name_check_url, headers=self.client.name_check_headers)
 
         # Convert response to JSON
         data = response.json()
 
         # Verify request worked
         if "nameIsAvailableOnServer" in data:
-            self.account.nameStatus = data["nameIsAvailableOnServer"]
+            self.account.name_status = data["nameIsAvailableOnServer"]
             return
         else:
             raise Exception('GetSummonerNameChangeAvailable failed.')
 
     def ChangeName(self):
-        url, ref = "", ""
-        if self.account.region == "NA1":
-            url = "https://store.na2.lol.riotgames.com/storefront/v3/summonerNameChange/purchase?language=en_GB"
-            ref = "https://store.na2.lol.riotgames.com/storefront/ui/v1/app.html?language=en_GB&port=52684&clientRegion=na2&selectedItems=&page=featured&recipientSummonerId="
-        else:
-            url = "https://store." + self.account.region + \
-                ".lol.riotgames.com/storefront/v3/summonerNameChange/purchase?language=en_GB"
-            ref = "https://store." + self.account.region + ".lol.riotgames.com/storefront/ui/v1/app.html?language=en_GB&port=52684&clientRegion=" + \
-                self.account.region + "&selectedItems=&page=featured&recipientSummonerId="
-
-        # Request body
-        body = "{\"summonerName\":\""
-        body += self.account.alias
-        body += "\",\"accountId\":"
-        body += self.account.accountID
-        body += ",\"items\":[{\"inventoryType\":\"SUMMONER_CUSTOMIZATION\",\"itemId\":1,\"ipCost\":13900,\"rpCost\":null,\"quantity\":1}]}"
-
-        # Request headers
-        headers = {
-            "User-Agent": "RiotClient/18.0.0 (lol-store)",
-            "Accept": "application/json",
-            "Content-type": "application/json",
-            "Authorization": "Bearer " + self.account.access_token,
-            "Referer": ref
-        }
-
         # Attempt POST request
-        response = requests.post(url, data=body, headers=headers)
+        response = requests.post(
+            self.client.change_name_url, data=self.client.change_name_body, headers=self.client.change_name_headers)
 
         # Convert response to JSON
         data = response.json()
@@ -218,7 +153,12 @@ class YHLQMDLG:
 
 if __name__ == '__main__':
     print('[YHLQMDLG] Enter Riot account details.')
+
     account = ac.Account()
     account.Setup()
-    yh = YHLQMDLG(account)
-    yh.Run()
+
+    client = cl.Client(account)
+    client.Build()
+
+    vanguard = YHLQMDLG(account, client)
+    vanguard.Run()

@@ -24,10 +24,10 @@ class Account:
         self.region = ""
         self.mode = ""
         self.access_token = ""
-        self.accountID = ""
+        self.account_id = ""
         self.be = 0
         self.rp = 0
-        self.nameStatus = ""
+        self.name_status = ""
         self.requests_count = 0
         self.days = 0
 
