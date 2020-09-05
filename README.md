@@ -1,7 +1,7 @@
 <br>
 
 <p align="center">
-<a href="https://github.com/3SUM"><img width="200" src="./logo/cactus.jpg" alt="Cactus logo"></a>
+<a href="https://github.com/3SUM"><img width="200" src="./logo/cactus.png" alt="Cactus logo"></a>
 </p>
 
 <br>
