@@ -6,7 +6,7 @@ import re
 from datetime import datetime, timedelta
 
 
-class YHLQMDLG:
+class Cactus:
 
     def __init__(self, account, client):
         self.account = account
@@ -18,12 +18,12 @@ class YHLQMDLG:
         self.Sniper()
 
     def Sniper(self):
-        print(f'[YHLQMDLG] {self.account.mode}')
+        print(f'[Cactus] {self.account.mode}')
         self.GetCountDown()
         # modify it so that getCountDown becomes the looping condition
 
     def Turbo(self):
-        print(f'[YHLQMDLG] {self.account.mode}')
+        print(f'[Cactus] {self.account.mode}')
         self.Login()
         self.client.UpdateAccessToken()
         self.PurchaseInformation()
@@ -32,23 +32,23 @@ class YHLQMDLG:
 
         if self.account.name_status:
             print(
-                f'[YHLQMDLG] Requested name: {self.account.alias} available.')
+                f'[Cactus] Requested name: {self.account.alias} available.')
             self.ChangeName()
         else:
             print(
-                f'[YHLQMDLG] Requested name: {self.account.alias} not available.')
-            print('[YHLQMDLG] Starting turbo...')
+                f'[Cactus] Requested name: {self.account.alias} not available.')
+            print('[Cactus] Starting turbo...')
             while True:
                 time.sleep(2.4)
                 if self.ChangeName():
-                    print('[YHLQMDLG] TURBO SUCCESSFUL!')
+                    print('[Cactus] TURBO SUCCESSFUL!')
                     break
                 else:
                     self.account.requests_count += 1
                     print(f'Requests: {self.account.requests_count}')
                     if self.account.requests_count % 195 == 0:
                         if self.Login():
-                            print('[YHLQMDLG] NEW ACCESS TOKEN')
+                            print('[Cactus] NEW ACCESS TOKEN')
                             self.client.UpdateAccessToken()
 
     def Login(self):
@@ -61,7 +61,7 @@ class YHLQMDLG:
 
         # Verify request worked
         if "access_token" in data:
-            print('[YHLQMDLG] Login successful!')
+            print('[Cactus] Login successful!')
             self.account.access_token = data["access_token"]
             return
         else:
@@ -152,16 +152,16 @@ class YHLQMDLG:
 
 
 if __name__ == '__main__':
-    print('[YHLQMDLG] Enter Riot account details.')
+    print('[Cactus] Enter Riot account details.')
     print("=" * 60)
 
     account = ac.Account()
     account.Setup()
-    
+
     print("=" * 60)
 
     client = cl.Client(account)
     client.Build()
 
-    vanguard = YHLQMDLG(account, client)
+    vanguard = Cactus(account, client)
     vanguard.Run()
