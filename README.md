@@ -18,8 +18,8 @@ To see when a name expires check out [lolnames.gg](https://lolnames.gg/en/).
 
 Please note this is a **WIP** and updates will happen to improve Cactus. As of now *(15/09/2020)*
 the `Turbo` mode is essentially fully functional, while the `Sniper` mode has yet to be completed.
-The domains have been updated so Cactus is now working correctly again *(15/09/2020)*. If you wish to obtain a
-highly sought after name, I reccomend hosting various instances of Cactus through [AWS](https://aws.amazon.com/) or something similar. I will not offer help with this though as I am busy with school and other projects.
+The domains have been updated so Cactus is now working again *(15/09/2020)*. If you wish to obtain a
+highly sought after name, I recommend hosting various instances of Cactus through [AWS](https://aws.amazon.com/) or something similar. I will not offer help with this though as I am busy with school and other projects.
 
 If you have questions or concerns please feel free to contact me here or on **Discord @icantcode#5581**.
 
