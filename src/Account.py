@@ -7,14 +7,7 @@ class Account:
     Regions = {
         "EUNE": "EUN1",
         "EUW": "EUW1",
-        "NA": "NA1",
-        "BR": "BR1",
-        "LAN": "LA1",
-        "LAS": "LA2",
-        "OCE": "OC1",
-        "TR": "TR1",
-        "RU": "RU",
-        "PBE": "PBE1"
+        "NA": "NA1"
     }
 
     def __init__(self):

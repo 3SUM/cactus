@@ -15,6 +15,7 @@ class Cactus:
     def Run(self):
         if self.account.mode == "TURBO":
             self.Turbo()
+            return
         self.Sniper()
 
     def Sniper(self):
@@ -27,13 +28,15 @@ class Cactus:
         self.Login()
         self.client.UpdateAccessToken()
         self.PurchaseInformation()
+        print(f'[Cactus] {self.account.username} BE: {self.account.be}')
         self.client.UpdateAccountID()
         self.GetSummonerNameChangeAvailable()
 
         if self.account.name_status:
             print(
                 f'[Cactus] Requested name: {self.account.alias} available.')
-            self.ChangeName()
+            if self.ChangeName():
+                print('[Cactus] TURBO SUCCESSFUL!')
         else:
             print(
                 f'[Cactus] Requested name: {self.account.alias} not available.')

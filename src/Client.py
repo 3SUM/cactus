@@ -40,31 +40,40 @@ class Client:
             'access%20lol%20ban%20profile%20email%20phone'
         )
 
+        # NEW ENDPOINT POSSIBLY?
         if self.account.region == "NA1":
-            self.purchase_info_url = "https://store.na2.lol.riotgames.com/storefront/v3/history/purchase?language=en_GB"
-        else:
-            self.purchase_info_url = (
-                f'https://store.{self.account.region}.lol.riotgames.com/storefront/v3/history/purchase?language=en_GB'
-            )
+            self.purchase_info_url = "https://na.store.leagueoflegends.com/storefront/v3/history/purchase?language=en_GB"
+        elif self.account.region == "EUN1":
+            self.purchase_info_url = "https://eun.store.leagueoflegends.com/storefront/v3/history/purchase?language=en_GB"
+        elif self.account.region == "EUW1":
+            self.purchase_info_url = "https://euw.store.leagueoflegends.com/storefront/v3/history/purchase?language=en_GB"
 
         if self.account.region == "NA1":
             self.name_check_url = (
-                f'https://store.na2.lol.riotgames.com/storefront/v3/summonerNameChange/verify/{self.account.alias}'
+                f'https://na.store.leagueoflegends.com/storefront/v3/summonerNameChange/verify/{self.account.alias}'
             )
-        else:
+        elif self.account.region == "EUN1":
             self.name_check_url = (
-                f'https://store.{self.account.region}.lol.riotgames.com/storefront/v3/summonerNameChange/verify/{self.account.alias}'
+                f'https://eun.store.leagueoflegends.com/storefront/v3/summonerNameChange/verify/{self.account.alias}'
+            )
+        elif self.account.region == "EUW1":
+            self.name_check_url = (
+                f'https://euw.store.leagueoflegends.com/storefront/v3/summonerNameChange/verify/{self.account.alias}'
             )
 
         if self.account.region == "NA1":
             self.change_name_url = "https://store.na2.lol.riotgames.com/storefront/v3/summonerNameChange/purchase?language=en_GB"
             self.change_name_referer = "https://store.na2.lol.riotgames.com/storefront/ui/v1/app.html?language=en_GB&port=52684&clientRegion=na2&selectedItems=&page=featured&recipientSummonerId="
-        else:
-            self.change_name_url = (
-                f'https://store.{self.account.region}.lol.riotgames.com/storefront/v3/summonerNameChange/purchase?language=en_GB'
-            )
+        elif self.account.region == "EUN1":
+            self.change_name_url = "https://eun.store.leagueoflegends.com/storefront/v3/summonerNameChange/purchase?language=en_GB"
             self.change_name_referer = (
-                f'https://store.{self.account.region}.lol.riotgames.com/storefront/ui/v1/app.html?language=en_GB&port=52684&clientRegion='
+                f'https://eun.store.leagueoflegends.com/storefront/ui/v1/app.html?language=en_GB&port=52684&clientRegion='
+                f'{self.account.region}&selectedItems=&page=featured&recipientSummonerId='
+            )
+        elif self.account.region == "EUW1":
+            self.change_name_url = "https://euw.store.leagueoflegends.com/storefront/v3/summonerNameChange/purchase?language=en_GB"
+            self.change_name_referer = (
+                f'https://euw.store.leagueoflegends.com/storefront/ui/v1/app.html?language=en_GB&port=52684&clientRegion='
                 f'{self.account.region}&selectedItems=&page=featured&recipientSummonerId='
             )
 
