@@ -62,8 +62,8 @@ class Client:
             )
 
         if self.account.region == "NA1":
-            self.change_name_url = "https://store.na2.lol.riotgames.com/storefront/v3/summonerNameChange/purchase?language=en_GB"
-            self.change_name_referer = "https://store.na2.lol.riotgames.com/storefront/ui/v1/app.html?language=en_GB&port=52684&clientRegion=na2&selectedItems=&page=featured&recipientSummonerId="
+            self.change_name_url = "https://na.store.leagueoflegends.com/storefront/v3/summonerNameChange/purchase?language=en_GB"
+            self.change_name_referer = "https://na.store.leagueoflegends.com/storefront/ui/v1/app.html?language=en_GB&port=52684&clientRegion=na2&selectedItems=&page=featured&recipientSummonerId="
         elif self.account.region == "EUN1":
             self.change_name_url = "https://eun.store.leagueoflegends.com/storefront/v3/summonerNameChange/purchase?language=en_GB"
             self.change_name_referer = (
