@@ -1,6 +1,5 @@
 .DS_Store
 src/__pycache*
 src/venv
-src/login.txt
-src/eunlogin.txt
 src/regions.json
+src/logins.txt
