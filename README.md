@@ -21,7 +21,7 @@ the `Turbo` mode is essentially fully functional, while the `Sniper` mode has ye
 Due to changes made by Riot to their RSO, Cactus is currently not working *(15/01/2021)*. If you wish to obtain a
 highly sought after name, I recommend hosting various instances of Cactus through [AWS](https://aws.amazon.com/) or something similar. I will not offer help with this though as I am busy.
 
-If you have questions or concerns please feel free to contact me here or on **Discord @icantcode#5581**.
+If you have questions or concerns please feel free to contact me here or on **Discord @icantcode#0001**.
 
 ## Legal Disclaimer
 
