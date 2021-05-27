@@ -1,4 +1,5 @@
 .DS_Store
+src/env/
 src/__pycache*
 src/venv
 src/regions.json
