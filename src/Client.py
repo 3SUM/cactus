@@ -6,7 +6,7 @@ class Client:
 
         self.account = account
 
-        self.login_url = "https://auth.riotgames.com/token"
+        self.login_url = "https://auth.riotgames.com/api/v1/authorization"
         self.login_body = ""
         self.login_headers = {
             "User-Agent": "RiotClient/17.1.0 (rso-auth)",
@@ -26,20 +26,6 @@ class Client:
         self.change_name_headers = {}
 
     def Build(self):
-        self.login_body = (
-            'client_assertion_type=urn%3Aietf%3Aparams%3Aoauth%3Aclient-assertion-type%3Ajwt-'
-            'bearer&client_assertion=eyJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJodHRwczpcL1wvYXV0aC5yaW90'
-            'Z2FtZXMuY29tXC90b2tlbiIsInN1YiI6ImxvbCIsImlzcyI6ImxvbCIsImV4cCI6MTYwMTE1MTIxNCwia'
-            'WF0IjoxNTM4MDc5MjE0LCJqdGkiOiIwYzY3OThmNi05YTgyLTQwY2ItOWViOC1lZTY5NjJhOGUyZDcifQ'
-            '.dfPcFQr4VTZpv8yl1IDKWZz06yy049ANaLt-AKoQ53GpJrdITU3iEUcdfibAh1qFEpvVqWFaUAKbVIxQ'
-            'otT1QvYBgo_bohJkAPJnZa5v0-vHaXysyOHqB9dXrL6CKdn_QtoxjH2k58ZgxGeW6Xsd0kljjDiD4Z0CR'
-            'R_FW8OVdFoUYh31SX0HidOs1BLBOp6GnJTWh--dcptgJ1ixUBjoXWC1cgEWYfV00-DNsTwer0UI4YN2TD'
-            'mmSifAtWou3lMbqmiQIsIHaRuDlcZbNEv_b6XuzUhi_lRzYCwE4IKSR-AwX_8mLNBLTVb8QzIJCPR-MGa'
-            f'PL8hKPdprgjxT0m96gw&grant_type=password&username={self.account.region}%7C'
-            f'{self.account.username}&password={self.account.password}&scope=openid%20offline_'
-            'access%20lol%20ban%20profile%20email%20phone'
-        )
-
         # NEW ENDPOINT POSSIBLY?
         if self.account.region == "NA1":
             self.purchase_info_url = "https://na.store.leagueoflegends.com/storefront/v3/history/purchase?language=en_GB"

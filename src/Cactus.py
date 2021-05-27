@@ -55,20 +55,50 @@ class Cactus:
                             self.client.UpdateAccessToken()
 
     def Login(self):
-        # Attempt POST request
-        response = requests.post(
-            self.client.login_url, data=self.client.login_body, headers=self.client.login_headers)
+
+        session = requests.session()
+
+        data = {
+            "claims": "",
+            "acr_values": "urn:riot:bronze",
+            "redirect_uri": "http://localhost/redirect",
+            "client_id": "riot-client",
+            "nonce": 1,
+            "response_type": "token id_token",
+            "scope": "openid link ban lol_region"
+        }
+
+        response = session.post(self.client.login_url, json=data)
+
+        data = {
+            "type": "auth",
+            "language": "em_US",
+            "remember": "false",
+            "region": self.account.region,
+            "username": self.account.username,
+            "password": self.account.password
+        }
+
+        response = session.put(self.client.login_url, json=data)
 
         # Convert response to JSON
         data = response.json()
 
-        # Verify request worked
-        if "access_token" in data:
-            print('[Cactus] Login successful!')
-            self.account.access_token = data["access_token"]
-            return
-        else:
-            raise Exception('Login Failed.')
+        if data.get("error"):
+            errors = {
+                "auth_failure": "Failed to authenticate (probably invalid login)",
+                "rate_limited": "Rate limited"
+            }
+
+            raise Exception(errors[data["error"]])
+
+        pattern = re.compile('#access_token=(.*?)&')
+
+        token = pattern.findall(data['response']['parameters']['uri'])[0]
+
+        print('[Cactus] Login successful!')
+        self.account.access_token = token
+        return
 
     def PurchaseInformation(self):
         # Attempt GET request
@@ -120,7 +150,7 @@ class Cactus:
 
     def GetCountDown(self):
         # url
-        url = "https://lolnames.gg/en/na/" + self.account.alias
+        url = "https://lols.gg/en/name/checker/na/" + self.account.alias
 
         # Request headers
         headers = {
