@@ -4,11 +4,7 @@ import os
 
 class Account:
 
-    Regions = {
-        "EUNE": "EUN1",
-        "EUW": "EUW1",
-        "NA": "NA1"
-    }
+    Regions = {"EUNE": "EUN1", "EUW": "EUW1", "NA": "NA1"}
 
     def __init__(self):
         self.username = ""
@@ -25,24 +21,24 @@ class Account:
         self.days = 0
 
     def Setup(self):
-        self.username = str(input('\t> Username: '))
+        self.username = str(input("\t> Username: "))
         if len(self.username) == 0:
-            raise Exception('Username expected.')
+            raise Exception("Username expected.")
 
-        self.password = str(input('\t> Password: '))
+        self.password = str(input("\t> Password: "))
         if len(self.password) == 0:
-            raise Exception('Password expected.')
+            raise Exception("Password expected.")
 
-        self.alias = str(input('\t> Requested name: '))
+        self.alias = str(input("\t> Requested name: "))
         if len(self.alias) == 0:
-            raise Exception('Name expected.')
+            raise Exception("Name expected.")
 
-        self.region = str(input('\t> Region [Abbreviation]: ')).upper()
+        self.region = str(input("\t> Region [Abbreviation]: ")).upper()
         if self.region in self.Regions:
             self.region = self.Regions[self.region]
         else:
-            raise Exception('Invalid region.')
+            raise Exception("Invalid region.")
 
-        self.mode = str(input('\t> Mode [Turbo/Sniper]: ')).upper()
+        self.mode = str(input("\t> Mode [Turbo/Sniper]: ")).upper()
         if self.mode != "TURBO" and self.mode != "SNIPER":
-            raise Exception('Invalid mode.')
+            raise Exception("Invalid mode.")

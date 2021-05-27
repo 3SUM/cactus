@@ -7,7 +7,6 @@ from datetime import datetime, timedelta
 
 
 class Cactus:
-
     def __init__(self, account, client):
         self.account = account
         self.client = client
@@ -19,44 +18,44 @@ class Cactus:
         self.Sniper()
 
     def Sniper(self):
-        print(f'[Cactus] {self.account.mode}')
+        print(f"[Cactus] {self.account.mode}")
         self.GetCountDown()
         # modify it so that getCountDown becomes the looping condition
 
     def Turbo(self):
-        print(f'[Cactus] {self.account.mode}')
+        print(f"[Cactus] {self.account.mode}")
         self.Login()
         self.client.UpdateAccessToken()
         self.PurchaseInformation()
-        print(f'[Cactus] {self.account.username} BE: {self.account.be}')
+        print(f"[Cactus] {self.account.username} BE: {self.account.be}")
         self.client.UpdateAccountID()
         self.GetSummonerNameChangeAvailable()
 
         if self.account.name_status:
-            print(
-                f'[Cactus] Requested name: {self.account.alias} available.')
+            print(f"[Cactus] Requested name: {self.account.alias} available.")
             if self.ChangeName():
-                print('[Cactus] TURBO SUCCESSFUL!')
+                print("[Cactus] TURBO SUCCESSFUL!")
         else:
-            print(
-                f'[Cactus] Requested name: {self.account.alias} not available.')
-            print('[Cactus] Starting turbo...')
+            print(f"[Cactus] Requested name: {self.account.alias} not available.")
+            print("[Cactus] Starting turbo...")
             while True:
                 time.sleep(2.4)
                 if self.ChangeName():
-                    print('[Cactus] TURBO SUCCESSFUL!')
+                    print("[Cactus] TURBO SUCCESSFUL!")
                     break
                 else:
                     self.account.requests_count += 1
-                    print(f'Requests: {self.account.requests_count}')
+                    print(f"Requests: {self.account.requests_count}")
                     if self.account.requests_count % 195 == 0:
                         if self.Login():
-                            print('[Cactus] NEW ACCESS TOKEN')
+                            print("[Cactus] NEW ACCESS TOKEN")
                             self.client.UpdateAccessToken()
 
     def Login(self):
         session = requests.session()
-        response = session.post(self.client.login_url, json=self.client.login_session_body)
+        response = session.post(
+            self.client.login_url, json=self.client.login_session_body
+        )
         response = session.put(self.client.login_url, json=self.client.login_token_body)
 
         # Convert response to JSON
@@ -65,23 +64,24 @@ class Cactus:
         if data.get("error"):
             errors = {
                 "auth_failure": "Failed to authenticate (probably invalid login)",
-                "rate_limited": "Rate limited"
+                "rate_limited": "Rate limited",
             }
 
             raise Exception(errors[data["error"]])
 
-        pattern = re.compile('#access_token=(.*?)&')
+        pattern = re.compile("#access_token=(.*?)&")
 
-        token = pattern.findall(data['response']['parameters']['uri'])[0]
+        token = pattern.findall(data["response"]["parameters"]["uri"])[0]
 
-        print('[Cactus] Login successful!')
+        print("[Cactus] Login successful!")
         self.account.access_token = token
         return
 
     def PurchaseInformation(self):
         # Attempt GET request
         response = requests.get(
-            self.client.purchase_info_url, headers=self.client.purchase_info_headers)
+            self.client.purchase_info_url, headers=self.client.purchase_info_headers
+        )
 
         # Convert response to JSON
         data = response.json()
@@ -92,15 +92,16 @@ class Cactus:
             self.account.be = int(data["player"]["ip"])
             self.account.rp = int(data["player"]["rp"])
             if self.account.be < 13900:
-                raise Exception('Not enough BE.')
+                raise Exception("Not enough BE.")
             return
         else:
-            raise Exception('PurchaseInformation failed.')
+            raise Exception("PurchaseInformation failed.")
 
     def GetSummonerNameChangeAvailable(self):
         # Attempt GET request
         response = requests.get(
-            self.client.name_check_url, headers=self.client.name_check_headers)
+            self.client.name_check_url, headers=self.client.name_check_headers
+        )
 
         # Convert response to JSON
         data = response.json()
@@ -110,12 +111,15 @@ class Cactus:
             self.account.name_status = data["nameIsAvailableOnServer"]
             return
         else:
-            raise Exception('GetSummonerNameChangeAvailable failed.')
+            raise Exception("GetSummonerNameChangeAvailable failed.")
 
     def ChangeName(self):
         # Attempt POST request
         response = requests.post(
-            self.client.change_name_url, data=self.client.change_name_body, headers=self.client.change_name_headers)
+            self.client.change_name_url,
+            data=self.client.change_name_body,
+            headers=self.client.change_name_headers,
+        )
 
         # Convert response to JSON
         data = response.json()
@@ -146,10 +150,10 @@ class Cactus:
         now = datetime.now()
         print("Today's date: " + str(now))
 
-        future_date = now + \
-            timedelta(days=self.account.days) + timedelta(hours=16)
+        future_date = now + timedelta(days=self.account.days) + timedelta(hours=16)
         second_date = datetime(
-            future_date.year, future_date.month, future_date.day, 16, 0)
+            future_date.year, future_date.month, future_date.day, 16, 0
+        )
         print("Date after: " + str(second_date))
 
         difference = future_date - now
@@ -162,8 +166,8 @@ class Cactus:
         return True
 
 
-if __name__ == '__main__':
-    print('[Cactus] Enter Riot account details.')
+if __name__ == "__main__":
+    print("[Cactus] Enter Riot account details.")
     print("=" * 60)
 
     account = acc.Account()
