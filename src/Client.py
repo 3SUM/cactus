@@ -7,11 +7,23 @@ class Client:
         self.account = account
 
         self.login_url = "https://auth.riotgames.com/api/v1/authorization"
-        self.login_body = ""
-        self.login_headers = {
-            "User-Agent": "RiotClient/17.1.0 (rso-auth)",
-            "Accept": "*/*",
-            "Content-type": "application/x-www-form-urlencoded"
+        self.login_session_body = {
+            "claims": "",
+            "acr_values": "urn:riot:bronze",
+            "redirect_uri": "http://localhost/redirect",
+            "client_id": "riot-client",
+            "nonce": 1,
+            "response_type": "token id_token",
+            "scope": "openid link ban lol_region"
+        }
+
+        self.login_token_body = {
+            "type": "auth",
+            "language": "em_US",
+            "remember": "false",
+            "region": self.account.region,
+            "username": self.account.username,
+            "password": self.account.password
         }
 
         self.purchase_info_url = ""
@@ -26,7 +38,6 @@ class Client:
         self.change_name_headers = {}
 
     def Build(self):
-        # NEW ENDPOINT POSSIBLY?
         if self.account.region == "NA1":
             self.purchase_info_url = "https://na.store.leagueoflegends.com/storefront/v3/history/purchase?language=en_GB"
         elif self.account.region == "EUN1":

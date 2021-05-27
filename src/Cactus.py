@@ -1,5 +1,5 @@
-import Account as ac
-import Client as cl
+import Account as acc
+import Client as cli
 import requests
 import time
 import re
@@ -55,31 +55,9 @@ class Cactus:
                             self.client.UpdateAccessToken()
 
     def Login(self):
-
         session = requests.session()
-
-        data = {
-            "claims": "",
-            "acr_values": "urn:riot:bronze",
-            "redirect_uri": "http://localhost/redirect",
-            "client_id": "riot-client",
-            "nonce": 1,
-            "response_type": "token id_token",
-            "scope": "openid link ban lol_region"
-        }
-
-        response = session.post(self.client.login_url, json=data)
-
-        data = {
-            "type": "auth",
-            "language": "em_US",
-            "remember": "false",
-            "region": self.account.region,
-            "username": self.account.username,
-            "password": self.account.password
-        }
-
-        response = session.put(self.client.login_url, json=data)
+        response = session.post(self.client.login_url, json=self.client.login_session_body)
+        response = session.put(self.client.login_url, json=self.client.login_token_body)
 
         # Convert response to JSON
         data = response.json()
@@ -188,12 +166,12 @@ if __name__ == '__main__':
     print('[Cactus] Enter Riot account details.')
     print("=" * 60)
 
-    account = ac.Account()
+    account = acc.Account()
     account.Setup()
 
     print("=" * 60)
 
-    client = cl.Client(account)
+    client = cli.Client(account)
     client.Build()
 
     vanguard = Cactus(account, client)

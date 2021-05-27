@@ -3,3 +3,4 @@ src/__pycache*
 src/venv
 src/regions.json
 src/logins.txt
+src/goblin.py
