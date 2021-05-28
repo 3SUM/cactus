@@ -3,7 +3,6 @@ import Account as ac
 
 class Client:
     def __init__(self, account):
-
         self.account = account
 
         self.login_url = "https://auth.riotgames.com/api/v1/authorization"
@@ -40,28 +39,20 @@ class Client:
     def Build(self):
         if self.account.region == "NA1":
             self.purchase_info_url = "https://na.store.leagueoflegends.com/storefront/v3/history/purchase?language=en_GB"
-        elif self.account.region == "EUN1":
-            self.purchase_info_url = "https://eun.store.leagueoflegends.com/storefront/v3/history/purchase?language=en_GB"
-        elif self.account.region == "EUW1":
-            self.purchase_info_url = "https://euw.store.leagueoflegends.com/storefront/v3/history/purchase?language=en_GB"
-
-        if self.account.region == "NA1":
             self.name_check_url = f"https://na.store.leagueoflegends.com/storefront/v3/summonerNameChange/verify/{self.account.alias}"
-        elif self.account.region == "EUN1":
-            self.name_check_url = f"https://eun.store.leagueoflegends.com/storefront/v3/summonerNameChange/verify/{self.account.alias}"
-        elif self.account.region == "EUW1":
-            self.name_check_url = f"https://euw.store.leagueoflegends.com/storefront/v3/summonerNameChange/verify/{self.account.alias}"
-
-        if self.account.region == "NA1":
             self.change_name_url = "https://na.store.leagueoflegends.com/storefront/v3/summonerNameChange/purchase?language=en_GB"
             self.change_name_referer = "https://na.store.leagueoflegends.com/storefront/ui/v1/app.html?language=en_GB&port=52684&clientRegion=na2&selectedItems=&page=featured&recipientSummonerId="
         elif self.account.region == "EUN1":
+            self.purchase_info_url = "https://eun.store.leagueoflegends.com/storefront/v3/history/purchase?language=en_GB"
+            self.name_check_url = f"https://eun.store.leagueoflegends.com/storefront/v3/summonerNameChange/verify/{self.account.alias}"
             self.change_name_url = "https://eun.store.leagueoflegends.com/storefront/v3/summonerNameChange/purchase?language=en_GB"
             self.change_name_referer = (
                 f"https://eun.store.leagueoflegends.com/storefront/ui/v1/app.html?language=en_GB&port=52684&clientRegion="
                 f"{self.account.region}&selectedItems=&page=featured&recipientSummonerId="
             )
         elif self.account.region == "EUW1":
+            self.purchase_info_url = "https://euw.store.leagueoflegends.com/storefront/v3/history/purchase?language=en_GB"
+            self.name_check_url = f"https://euw.store.leagueoflegends.com/storefront/v3/summonerNameChange/verify/{self.account.alias}"
             self.change_name_url = "https://euw.store.leagueoflegends.com/storefront/v3/summonerNameChange/purchase?language=en_GB"
             self.change_name_referer = (
                 f"https://euw.store.leagueoflegends.com/storefront/ui/v1/app.html?language=en_GB&port=52684&clientRegion="

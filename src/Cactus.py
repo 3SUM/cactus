@@ -20,7 +20,6 @@ class Cactus:
     def Sniper(self):
         print(f"[Cactus] {self.account.mode}")
         self.GetCountDown()
-        # modify it so that getCountDown becomes the looping condition
 
     def Turbo(self):
         print(f"[Cactus] {self.account.mode}")
@@ -58,7 +57,6 @@ class Cactus:
         )
         response = session.put(self.client.login_url, json=self.client.login_token_body)
 
-        # Convert response to JSON
         data = response.json()
 
         if data.get("error"):
@@ -75,18 +73,14 @@ class Cactus:
 
         print("[Cactus] Login successful!")
         self.account.access_token = token
-        return
 
     def PurchaseInformation(self):
-        # Attempt GET request
         response = requests.get(
             self.client.purchase_info_url, headers=self.client.purchase_info_headers
         )
 
-        # Convert response to JSON
         data = response.json()
 
-        # Verify request worked
         if "player" in data:
             self.account.account_id = str(data["player"]["accountId"])
             self.account.be = int(data["player"]["ip"])
@@ -98,15 +92,12 @@ class Cactus:
             raise Exception("PurchaseInformation failed.")
 
     def GetSummonerNameChangeAvailable(self):
-        # Attempt GET request
         response = requests.get(
             self.client.name_check_url, headers=self.client.name_check_headers
         )
 
-        # Convert response to JSON
         data = response.json()
 
-        # Verify request worked
         if "nameIsAvailableOnServer" in data:
             self.account.name_status = data["nameIsAvailableOnServer"]
             return
@@ -114,35 +105,28 @@ class Cactus:
             raise Exception("GetSummonerNameChangeAvailable failed.")
 
     def ChangeName(self):
-        # Attempt POST request
         response = requests.post(
             self.client.change_name_url,
             data=self.client.change_name_body,
             headers=self.client.change_name_headers,
         )
 
-        # Convert response to JSON
         data = response.json()
 
-        # Verify request worked
         if "transactions" in data:
             return True
 
         return False
 
     def GetCountDown(self):
-        # url
         url = "https://lols.gg/en/name/checker/na/" + self.account.alias
 
-        # Request headers
         headers = {
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36"
         }
 
-        # Attempt GET request
         response = requests.get(url, headers=headers)
 
-        # Get days from response
         reg_exp = re.search("available in([^.]*)days.</h4>", response.text)
         days = int(reg_exp.group(1))
         self.account.days = days
