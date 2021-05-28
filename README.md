@@ -48,6 +48,9 @@ You will be prompted for your Riot account details, as well as the requested sum
 obtain and the mode that Cactus will run in. *Note*, the only regions Cactus has access to are the following
 `NA, EUW, & EUNE`. 
 
+## Contributors
+
+[Luis Maya Aranda](https://github.com/3SUM) and [Steele Scott](https://github.com/steele123)
 
 ## License
 
