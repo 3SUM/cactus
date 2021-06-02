@@ -58,6 +58,14 @@ class Client:
                 f"https://euw.store.leagueoflegends.com/storefront/ui/v1/app.html?language=en_GB&port=52684&clientRegion="
                 f"{self.account.region}&selectedItems=&page=featured&recipientSummonerId="
             )
+        elif self.account.region == "BR1":
+            self.purchase_info_url = "https://br.store.leagueoflegends.com/storefront/v3/history/purchase?language=en_GB"
+            self.name_check_url = f"https://br.store.leagueoflegends.com/storefront/v3/summonerNameChange/verify/{self.account.alias}"
+            self.change_name_url = "https://br.store.leagueoflegends.com/storefront/v3/summonerNameChange/purchase?language=en_GB"
+            self.change_name_referer = (
+                f"https://br.store.leagueoflegends.com/storefront/ui/v1/app.html?language=en_GB&port=52684&clientRegion="
+                f"{self.account.region}&selectedItems=&page=featured&recipientSummonerId="
+            )
 
     def UpdateAccountID(self):
         self.change_name_body = '{"summonerName":"'

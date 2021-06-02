@@ -4,7 +4,7 @@ import os
 
 class Account:
 
-    Regions = {"EUNE": "EUN1", "EUW": "EUW1", "NA": "NA1"}
+    Regions = {"EUNE": "EUN1", "EUW": "EUW1", "NA": "NA1", "BR": "BR1"}
 
     def __init__(self):
         self.username = ""
