@@ -46,7 +46,7 @@ python Cactus.py
 
 You will be prompted for your Riot account details, as well as the requested summoner name you wish to
 obtain and the mode that Cactus will run in. *Note*, the only regions Cactus has access to are the following
-`NA, EUW, & EUNE`. 
+`NA, BR, EUW, & EUNE`. 
 
 ## Contributors
 
