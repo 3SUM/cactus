@@ -6,9 +6,15 @@
 
 <br>
 
-# Cactus
+# Cactus 2.0
 
-Cactus is a **WIP** League of Legends summoner name turbo/sniper tool.
+League of Legends Summoner Name turbo/sniper.
+
+After taking time off from this project and many requests to fix this tool, I am back.
+
+Cactus 2.0 will be an improved version of the original. It is currently in the early stages of development.
+
+***NOTE:*** The original version of Cactus is now under [Cactus 1.0](https://github.com/3SUM/cactus/tree/master/cactus-1.0).
 
 There are two modes to Cactus:
 
@@ -16,9 +22,7 @@ There are two modes to Cactus:
 2. **Sniper**: Will attempt to change your summoner name to the requested one on the expiration date.
 To see when a name expires check out [lolnames.gg](https://lolnames.gg/en/).
 
-Please note this is a **WIP** and updates will happen to improve Cactus. As of now *(15/01/2021)*
-the `Turbo` mode is essentially fully functional, while the `Sniper` mode has yet to be completed.
-If you wish to obtain a highly sought after name, I recommend hosting various instances of Cactus through [AWS](https://aws.amazon.com/) or something similar. I will not offer help with this though as I am busy.
+As of now *(24/05/2021)* Cactus 2.0 is in early development. No other public turbo/sniper tool is currently available as far as I can tell. If you wish to help with the development of Cactus 2.0 please contact me through Discord.
 
 If you have questions or concerns please feel free to contact me here or on **Discord @icantcode#7527**.
 
@@ -31,22 +35,12 @@ I am not accountable for any of your actions. Please do not misuse this tool.
 
 ## Installation & Usage
 
-To use Cactus you will need `Python 3.x` and the [requests](https://requests.readthedocs.io/en/master/)
-library beforehand. If you do not have the library installed please use the following command:
-
 ```
-pip install requests
-```
-
-Once the prerequisites are met, you are free to find the source code [here](./src) and run the following command: **NOTE: You will also need [Account.py](./src/Account.py) and [Client.py](./src/Client.py)**
-
-```
-python Cactus.py
+TBA
 ```
 
 You will be prompted for your Riot account details, as well as the requested summoner name you wish to
-obtain and the mode that Cactus will run in. *Note*, the only regions Cactus has access to are the following
-`NA, BR, EUW, & EUNE`. 
+obtain and the mode that Cactus will run in. *Note*, the only regions Cactus has access to are the following: `NA, BR, EUW, & EUNE`.
 
 ## Contributors
 
