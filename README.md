@@ -8,11 +8,7 @@
 
 # Cactus 2.0
 
-League of Legends Summoner Name turbo/sniper.
-
-After taking time off from this project and many requests to fix this tool, I am back.
-
-Cactus 2.0 will be an improved version of the original. It is currently in the early stages of development.
+Cactus 2.0 will be an improved version of the original project. It is currently in the early stages of development.
 
 ***NOTE:*** The original version of Cactus is now under [Cactus 1.0](https://github.com/3SUM/cactus/tree/master/cactus-1.0).
 
