@@ -18,7 +18,7 @@ There are two modes to Cactus:
 2. **Sniper**: Will attempt to change your summoner name to the requested one on the expiration date.
 To see when a name expires check out [lolnames.gg](https://lolnames.gg/en/).
 
-As of now *(24/05/2021)* Cactus 2.0 is in early development. No other public turbo/sniper tool is currently available as far as I can tell. If you wish to help with the development of Cactus 2.0 please contact me through Discord.
+As of now *(24/05/2022)* Cactus 2.0 is in early development. No other public turbo/sniper tool is currently available as far as I can tell. If you wish to help with the development of Cactus 2.0 please contact me through Discord.
 
 If you have questions or concerns please feel free to contact me here or on **Discord @icantcode#7527**.
 
